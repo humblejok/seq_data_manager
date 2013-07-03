@@ -27,21 +27,21 @@ class Currency(NamedObject):
     countries = models.ManyToManyField(Country)
 
 class Type(NamedObject):
-    target = models.CharField()
+    target = models.CharField(max_length=128)
 
 class SubType(NamedObject):
-    target = models.CharField()
+    target = models.CharField(max_length=128)
 
 class Relationship(models.Model):
-    rs_type = models.ForeignKey(Type, limit_choices_to={'target':__class__.__name__})
+    rs_type = models.ForeignKey(Type, limit_choices_to={'target':'Relationship'})
     rs_target = models.ForeignKey(IdentifiableObject)
 
 class ThirdParty(IdentifiableObject):
-    third_type = models.ForeignKey(Type, limit_choices_to={'target':__class__.__name__})
+    third_type = models.ForeignKey(Type, limit_choices_to={'target':'ThirdParty'})
     relations = models.ManyToManyField(Relationship)
 
 class FinancialAsset(IdentifiableObject):
-    asset_type = models.ForeignKey(Type, limit_choices_to={'target':__class__.__name__})
+    asset_type = models.ForeignKey(Type, limit_choices_to={'target':'ThirdParty'})
     relations = models.ManyToManyField(Relationship)
     
 class AdditionalIdType(NamedObject):
@@ -54,8 +54,8 @@ class AdditionalId(models.Model):
     
     
 class Track(IdentifiableObject):
-    track_type = models.ForeignKey(Type, limit_choices_to={'target':__class__.__name__})
-    track_sub_type = models.ForeignKey(SubType, limit_choices_to={'target':__class__.__name__})
+    track_type = models.ForeignKey(Type, limit_choices_to={'target':'Track'})
+    track_sub_type = models.ForeignKey(SubType, limit_choices_to={'target':'Track'})
     source = models.ForeignKey(Relationship)
     rank = models.IntegerField(default=0)
     is_percentage = models.BooleanField(default=False)
@@ -82,22 +82,22 @@ class TrackTokenSet(TrackToken):
 
 class AdditionalAttributeDefinition(NamedObject):
     comment = models.TextField(null=True, blank=True)
-    type = models.ForeignKey(Type, limit_choices_to={'target':__class__.__name__})
+    type = models.ForeignKey(Type, limit_choices_to={'target':'AdditionalAttributeDefinition'}, related_name='aa_definition_type')
     entity_class = models.CharField(max_length=128)
-    default_boolean = models.BooleanField(null=True)
+    default_boolean = models.NullBooleanField(null=True)
     default_float = models.FloatField(null=True)
     default_integer = models.IntegerField(null=True)
     default_text = models.TextField(null=True, blank=True)
-    default_target = models.ForeignKey(IdentifiableObject, null=True)
+    default_target = models.ForeignKey(NamedObject, null=True, related_name='aa_definition_target')
     
 class AdditionalAttributeValue(models.Model):
     target = models.ForeignKey(NamedObject)
-    type = models.ForeignKey(AdditionalAttributeDefinition)
-    value_boolean = models.BooleanField(null=True)
+    type = models.ForeignKey(AdditionalAttributeDefinition, related_name='aa_value_definition')
+    value_boolean = models.NullBooleanField(null=True)
     value_float = models.FloatField(null=True)
     value_integer = models.IntegerField(null=True)
     value_text = models.TextField(null=True, blank=True)
-    value_target = models.ForeignKey(IdentifiableObject, null=True)
+    value_target = models.ForeignKey(NamedObject, null=True, related_name='aa_value_target')
     
 class AttributeSet(NamedObject):
     definitions = models.ManyToManyField(AdditionalAttributeDefinition)
