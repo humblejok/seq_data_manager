@@ -1,0 +1,34 @@
+name,short_name,target
+Stock,Stock,FinancialAsset
+Spot rate,Spot,FinancialAsset
+Forward rate,Forward,FinancialAsset
+Fund,Fund,FinancialAsset
+Bond,Bond,FinancialAsset
+Option,Option,FinancialAsset
+Future,Future,FinancialAsset
+Index,Index,FinancialAsset
+Branch,Branch,Relationship
+Audit,Audit,Relationship
+Manage,Manage,Relationship
+Employee,Employee,Relationship
+Regulator,Regulator,Relationship
+Person,Person,ThirdParty
+Company,Company,ThirdParty
+Net Asset Value,NAV,Track
+Asset Under Management,AUM,Track
+Performance,Perf,Track
+Yield,Yield,Track
+Strategy,Strat,Track
+Sector,Sector,Track
+Region,Region,Track
+Style,Style,Track
+Status,Status,Track
+Boolean,Boolean,AdditionalAttributeDefinition
+Tri-state boolean,TSBoolean,AdditionalAttributeDefinition
+Amount,Amount,AdditionalAttributeDefinition
+Percentage,Percent,AdditionalAttributeDefinition
+Yield,Yield,AdditionalAttributeDefinition
+Float,Float,AdditionalAttributeDefinition
+Integer,Integer,AdditionalAttributeDefinition
+Text,Text,AdditionalAttributeDefinition
+Entity,Entity,AdditionalAttributeDefinition

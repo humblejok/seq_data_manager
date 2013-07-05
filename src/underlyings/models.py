@@ -19,11 +19,12 @@ class IdentifiableObject(NamedObject):
 class Country(NamedObject):
     iso_code_3 = models.CharField(max_length=3)
     iso_code_2 = models.CharField(max_length=2)
+    currency_iso_code_3 = models.CharField(max_length=3)
 
 class Currency(NamedObject):
     iso_code_3 = models.CharField(max_length=3)
     iso_code_2 = models.CharField(max_length=2)
-    iso_symbol = models.CharField(max_length=3)
+    iso_symbol = models.CharField(max_length=16)
     countries = models.ManyToManyField(Country)
 
 class Type(NamedObject):
@@ -54,13 +55,14 @@ class AdditionalId(models.Model):
     
     
 class Track(IdentifiableObject):
-    track_type = models.ForeignKey(Type, limit_choices_to={'target':'Track'})
-    track_sub_type = models.ForeignKey(SubType, limit_choices_to={'target':'Track'})
-    source = models.ForeignKey(Relationship)
+    target = models.ForeignKey(NamedObject)
+    track_type = models.ForeignKey(Type, limit_choices_to={'target':'Track'}, related_name='track_type')
+    track_sub_type = models.ForeignKey(SubType, limit_choices_to={'target':'Track'}, null = True, related_name='track_sub_type')
+    source = models.ForeignKey(Relationship, null=True)
     rank = models.IntegerField(default=0)
     is_percentage = models.BooleanField(default=False)
     is_yield = models.BooleanField(default=False)
-    is_amount = models.ForeignKey(Currency, null=True)
+    is_amount = models.ForeignKey(Currency, null=True, related_name='track_amount')
 
 class TrackToken(models.Model):
     track = models.ForeignKey(Track)

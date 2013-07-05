@@ -1,0 +1,4 @@
+name,short_name,id_internal_code,id_ticker,id_bloomberg_id,id_bloomberg_full_ticker,id_cusip,id_isin,id_sedol,id_ric_code,id_wkn,asset_type
+Raptor Pharmaceutical Corp,Raptor,681,RPTP,BBG000BSJPC6,RPTP US Equity,,US75382F1066,,,,Stock
+CAC 40,CAC 40,,CAC,BBG000HY2S75,CAC Index,,FR0003500008 ,,,,Index
+Barclays Currency Traders,BCT,,BARCURR,,BARCCUR Index,,,,,,Index

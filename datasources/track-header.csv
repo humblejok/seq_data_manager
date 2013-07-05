@@ -1,0 +1,4 @@
+target_type,target,name,short_name,id_internal_code,id_ticker,id_bloomberg_id,id_bloomberg_full_ticker,id_cusip,id_isin,id_sedol,id_ric_code,id_wkn,track_type,track_sub_type,source,rank,is_percentage,is_yield,is_amount
+FinancialAsset,CAC 40,CAC 40,CAC 40,,CAC,,CAC Index,,,,,,Net Asset Value,,,0,FALSE,FALSE,
+FinancialAsset,Raptor Pharmaceutical Corp,Raptor Pharmaceutical Corp,Raptor,,RPTP,,RPTP US Equity,,,,,,Net Asset Value,,,0,FALSE,FALSE,
+FinancialAsset,Barclays Currency Traders,Barclays Currency Traders,BCT,,BARCURR,,BARCURR Index,,,,,,Net Asset Value,,,0,FALSE,FALSE,
