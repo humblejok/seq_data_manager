@@ -154,3 +154,9 @@ LOGGING = {
         },
     }
 }
+
+#
+#
+#
+
+EXTERNAL_SOURCES_FOLDERS = ['c:\\DEV\\Tests\\WEALTHINGS\\',]
